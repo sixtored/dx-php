@@ -181,7 +181,7 @@
 
                                 $preference->items       = array($item1);
                                 $preference->auto_return = "all";
-                                $preference->notification_url = "http://www.sixtored.com.ar/index.php"
+                                $preference->notification_url = "http://www.sixtored.com.ar/index.php";
                                 //$preference->payer       = $payer ;
 
                                 $preference->save();
