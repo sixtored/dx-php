@@ -123,8 +123,8 @@
                                 $precio     = $_POST['price'] ;
                                 $descrip    = $_POST['title'] ;
                                 $unit       = $_POST['unit'] ;
-
-                                 MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398"); // Either Production or SandBox AccessToken
+                                MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+                                MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398"); // Either Production or SandBox setAccessToken
 
                                 // Crea un objeto de preferencia
                                 $preference = new MercadoPago\Preference();
@@ -132,11 +132,13 @@
                                 $item1      = new MercadoPago\Item();
 
                                 // Crea un ítem en la preferencia
-                               
+                               // montos chicos
+                                $precio = 200 ;                               
                                 $item1->id = "00001";
                                 $item1->title = $descrip; 
                                 $item1->quantity = $cantidad;
-                                $item1->unit_price = $precio ;
+                                $item1->unit_price = $precio ; 
+                                //$precio utilizo montos chicos.;
 
                                 // pagador - comprador
 
@@ -171,19 +173,20 @@
                                 );
 
                                 $preference->back_urls = array(
-                                "success" => "http://www.autenticaxvoz.com.ar",
-                                "failure" => "http://www.sixtored.com.ar",
-                                "pending" => "hppt://localhost/mp/dx-php/pending.php"
+                                "success" => "http://localhost/mp/dx-php/succes.php",
+                                "failure" => "http://localhost/mp/dx-php/failure.php",
+                                "pending" => "http://localhost/mp/dx-php/pending.php"
                                 );
                                 //http://localhost/mp/dx-php/testcompra.php
 
-                                $preference->external_reference = "ord externa de cobro";
+                                $preference->external_reference = "PED002345";
 
                                 $preference->items       = array($item1);
                                 $preference->auto_return = "all";
-                                $preference->notification_url = "http://www.sixtored.com.ar/index.php";
+                                $preference->notification_url = "http://localhost/mp/dx-php/ntweb/repect.php";
                                 //$preference->payer       = $payer ;
-
+                                echo "<br><br>" ;
+                                
                                 $preference->save();
 
 
@@ -203,7 +206,10 @@
                                             <?php echo $precio; ?>
                                         </h3>
                                         <h3 >
-                                            <?php echo "$". $unit; ?>
+                                            <?php echo "$". $unit; 
+                                            echo "<br>";
+                                            echo $preference->id ;?>
+
                                         </h3>
                                     </div>
                                     <!--

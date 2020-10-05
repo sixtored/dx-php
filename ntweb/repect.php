@@ -18,8 +18,10 @@ require '../utils/Response.php';
         header("Content-Type: application/json, charset=utf-8");
         // obtener el body (cuerpo) de la petición.
         // file_get_contents("php://input") => obtiene el cuerpo de la petición            
-         MercadoPago\SDK::setAccessToken("TEST-1491103792399277-100219-ba53f79570c6591431f83ae8d1b36a26-78486616");
+         MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
         $data = json_decode(file_get_contents("php://input"));
+
+        echo $data ;
 
 
     switch($_POST["type"]) {

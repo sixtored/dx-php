@@ -8,6 +8,7 @@
   </head>
 
 <?php 
+    MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
     MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398"); // Either Production or SandBox AccessToken
 
     // Crea un objeto de preferencia
@@ -57,7 +58,7 @@
   );
   */
 
-  $preference->external_reference = "NUMERO ORDEN EXTERNA";
+  $preference->external_reference = "01003";
   
 
 //echo "<a href='$preference->init_point'> Pagar </a>";
@@ -85,7 +86,7 @@
 
 
     $preference->back_urls = array(
-    "success" => "succes.php",
+    "success" => "success.php",
     "failure" => "failure.php",
     "pending" => "pending.php"
     );
@@ -105,6 +106,7 @@
     echo "<br>" ;
     $jsonpre = json_encode( $preference);
     echo $jsonpre ;
+    print_r($preference->id);
 
 
   ?>
@@ -112,7 +114,7 @@
   <body>
     <form action="/procesar-pago" method="POST">
   <script
-   src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
+   src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
    data-preference-id="<?php echo $preference->id; ?>">
   </script>
 </form>
